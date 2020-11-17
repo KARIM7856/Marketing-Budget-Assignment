@@ -17,6 +17,7 @@ public class UniformMutator {
 		double deltaL = genes.get(r0) - investmentInfo.get(r0).getLowerBound();
 		double deltaU = investmentInfo.get(r0).getUpperBound() - genes.get(r0);
 		double r1 = Math.random();
+		double newGene;
 		
 		delta = (r0 > 0.5)? deltaU : deltaL;
 		
@@ -24,13 +25,17 @@ public class UniformMutator {
 		
 		if(delta == deltaL)
 		{
-			double newGene = genes.get(r0) - r2;
+			newGene = genes.get(r0) - r2;
 		}
 		else
 		{
-			double newGene = genes.get(r0) + r2;
+			newGene = genes.get(r0) + r2;
 		}
 		
-		return null;
+		genes.set(r0, newGene);
+		
+		c.chromosome = genes;
+		
+		return c;
 	}
 }
