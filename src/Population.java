@@ -8,6 +8,7 @@ public class Population {
 	private IMutator mutator;
 	private int nGeneration;
 	private ArrayList<InvestmentInfo> investmentInfo;
+	private UniformMutator um;
 	
 	
 	
@@ -19,13 +20,14 @@ public class Population {
 	 * @param investmentInfo
 	 */
 	public Population(ArrayList<Chromosome> population , FitnessCalculator fc, Integer population_size, IMutator mutator,
-			ArrayList<InvestmentInfo> investmentInfo) {
+			ArrayList<InvestmentInfo> investmentInfo, UniformMutator um) {
 		super();
 		this.population = population;
 		this.fc = fc;
 		this.population_size = population_size;
 		this.mutator = mutator;
 		this.investmentInfo = investmentInfo;
+		this.um = um;
 	}
 
 
@@ -71,7 +73,7 @@ public class Population {
 	}
 	
 	private ArrayList<Chromosome> mutation(ArrayList<Chromosome> newGeneration) {
-		
+		UniformMutator um = new UniformMutator(getInvestmentInfos());
 		return null;
 	}
 
@@ -181,6 +183,9 @@ public class Population {
 		this.mutator = mutator;
 	}
 	
-	
+	public ArrayList<InvestmentInfo> getInvestmentInfos()
+	{
+		return investmentInfo;
+	}
 	
 }
