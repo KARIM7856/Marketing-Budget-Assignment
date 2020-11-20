@@ -22,6 +22,7 @@ public class MBA {
 		this.investmentInfo = investmentInfo;
 		this.bestSolution = null;
 		this.population = new Population(fc, 50, new NonUniformMutator(investmentInfo, fc, maxGenerations), investmentInfo, 5);
+		//this.population = new Population(fc, 50, new UniformMutator(investmentInfo, fc), investmentInfo, 5);
 	}
 
 
