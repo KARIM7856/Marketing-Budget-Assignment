@@ -23,29 +23,37 @@ public class NonUniformMutator implements IMutator {
 		ArrayList<Double> chromosome = (ArrayList<Double>)c.getChromosome().clone();
 		
 		for(int i = 0; i < chromosome.size(); i++) {
-			double r1 = Math.random();
-			
-			double y = 0.0;
-			
-			double delta = 0.0;
-			
-			if(r1 >= 0.5) {
-				y = calcDeltaU(investmentInfo.get(i), chromosome.get(i), c.getTotal());
-				delta = calcDelta(y, Math.random(), t);
+			double pm = Math.random();
+			if(pm < 0.1)
+			{
+				double r1 = Math.random();
 				
-				chromosome.set(i, chromosome.get(i)+delta);
-				if(chromosome.get(i) < 0.0) {
-					System.out.println(chromosome.get(i));
+				double y = 0.0;
+				
+				double delta = 0.0;
+				
+				if(r1 >= 0.5) {
+					y = calcDeltaU(investmentInfo.get(i), chromosome.get(i), c.getTotal());
+					delta = calcDelta(y, Math.random(), t);
+					
+					chromosome.set(i, chromosome.get(i)+delta);
+					if(chromosome.get(i) < 0.0) {
+						System.out.println(chromosome.get(i));
+					}
+				}
+				else {
+					y = calcDeltaL(investmentInfo.get(i), chromosome.get(i), c.getTotal());
+					delta = calcDelta(y, Math.random(), t);
+					
+					chromosome.set(i, chromosome.get(i)-delta);
+					if(chromosome.get(i) < 0.0) {
+						System.out.println(chromosome.get(i));
+					}
 				}
 			}
-			else {
-				y = calcDeltaL(investmentInfo.get(i), chromosome.get(i), c.getTotal());
-				delta = calcDelta(y, Math.random(), t);
-				
-				chromosome.set(i, chromosome.get(i)-delta);
-				if(chromosome.get(i) < 0.0) {
-					System.out.println(chromosome.get(i));
-				}
+			else
+			{
+				continue;
 			}
 		}
 		

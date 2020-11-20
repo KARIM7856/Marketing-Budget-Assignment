@@ -101,12 +101,7 @@ public class Population {
 		ArrayList<Chromosome> result = new ArrayList<Chromosome>();
 		
 		for(Chromosome c : newGeneration) {
-			if(Math.random() < 0.1) {
-				result.add(mutator.mutate(c, nGeneration));
-			}
-			else {
-				result.add(c);
-			}
+			result.add(mutator.mutate(c, nGeneration));
 		}
 		return result;
 	}
